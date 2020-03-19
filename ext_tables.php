@@ -1,13 +1,13 @@
 <?php
-defined('TYPO3_MODE') || exit('Access denied.');
+defined('TYPO3_MODE') or die();
 
-$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
+$extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase('lp_iframe');
 
 /**
  * Add setup.txt / constants.txt to static files selection in template records
  */
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
-    $_EXTKEY,
+    'lp_iframe',
     'Configuration/TypoScript',
     'LP iFrame'
 );
@@ -19,16 +19,16 @@ $pluginName = 'pi1';
 $pluginSignatureList = strtolower($extensionName) . '_' . $pluginName;
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-    $_EXTKEY,
+    'lp_iframe',
     $pluginName,
-    'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_flexform.xlf:' . $pluginName,
-    'EXT:' . $_EXTKEY . '/ext_icon.gif'
+    'LLL:EXT:lp_iframe/Resources/Private/Language/locallang_flexform.xlf:' . $pluginName,
+    'EXT:lp_iframe/ext_icon.gif'
 );
 
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$pluginSignatureList] = 'layout,select_key,pages,recursive';
 $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignatureList] = 'pi_flexform';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
-    $pluginSignatureList, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForms/flexform_' . $pluginName . '.xml'
+    $pluginSignatureList, 'FILE:EXT:lp_iframe/Configuration/FlexForms/flexform_' . $pluginName . '.xml'
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr(
